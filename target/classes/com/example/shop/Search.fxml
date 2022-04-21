@@ -4,13 +4,15 @@
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="838.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shop.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="838.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shop.SearchController">
     <children>
-        <AnchorPane layoutY="68.0" prefHeight="514.0" prefWidth="838.0" style="-fx-background-color: #FFFFFF;">
+        <AnchorPane layoutY="68.0" prefHeight="581.0" prefWidth="838.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <AnchorPane layoutX="229.0" layoutY="26.0" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;">
                <children>
@@ -26,13 +28,24 @@
                   </Button>
                </children>
             </AnchorPane>
-            <Button fx:id="MainButton" layoutX="697.0" layoutY="456.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="126.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;" text="Меню" textFill="#fcfafa">
+            <Button fx:id="MainButton" layoutX="697.0" layoutY="524.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="126.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;" text="Меню" textFill="#fcfafa">
                <font>
                   <Font name="Century Schoolbook" size="18.0" />
                </font></Button>
+            <TableView fx:id="Table_Product" layoutX="26.0" layoutY="130.0" prefHeight="378.0" prefWidth="790.0">
+               <columns>
+                  <TableColumn fx:id="col_name" prefWidth="87.19997787475586" text="Название" />
+                  <TableColumn fx:id="col_size" prefWidth="89.5999755859375" text="Размер" />
+                  <TableColumn fx:id="col_is_size" prefWidth="108.80000305175781" text="Номер размера" />
+                  <TableColumn fx:id="col_price" prefWidth="113.5999755859375" text="Цена" />
+                  <TableColumn fx:id="col_colour" prefWidth="121.60003662109375" text="Цвет" />
+                  <TableColumn fx:id="col_quantity" prefWidth="128.7999267578125" text="Количесвто" />
+                  <TableColumn fx:id="col_structure" prefWidth="140.7999267578125" text="Состав" />
+               </columns>
+            </TableView>
          </children>
         </AnchorPane>
-        <Label alignment="CENTER" cache="true" layoutX="196.0" layoutY="14.0" prefHeight="44.0" prefWidth="324.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;" text="ПОИСК ТОВАРОВ" textFill="WHITE" AnchorPane.bottomAnchor="523.0" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="14.0">
+        <Label alignment="CENTER" cache="true" layoutX="196.0" layoutY="14.0" prefHeight="44.0" prefWidth="464.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;" text="ПОИСК ТОВАРОВ" textFill="WHITE" AnchorPane.bottomAnchor="590.0" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="14.0">
             <font>
                 <Font name="Century Schoolbook" size="28.0" />
             </font>
