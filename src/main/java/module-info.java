@@ -7,4 +7,6 @@ module com.example.shop {
 
     opens com.example.shop to javafx.fxml;
     exports com.example.shop;
+    exports MySQL;
+    opens MySQL to javafx.fxml;
 }

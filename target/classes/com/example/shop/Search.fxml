@@ -14,18 +14,18 @@
     <children>
         <AnchorPane layoutY="68.0" prefHeight="581.0" prefWidth="838.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <AnchorPane layoutX="229.0" layoutY="26.0" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;">
+            <AnchorPane layoutX="54.0" layoutY="33.0" prefHeight="70.0" prefWidth="714.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;">
                <children>
-                  <TextField fx:id="TextSearch" layoutX="14.0" layoutY="13.0" prefHeight="44.0" prefWidth="250.0" promptText="Введите Артикул">
+                  <TextField fx:id="TextSearch" layoutX="432.0" layoutY="13.0" prefHeight="44.0" prefWidth="268.0" promptText="Поиск">
                      <font>
                         <Font name="Century Schoolbook Italic" size="18.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="SearchButton" layoutX="284.0" layoutY="13.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="81.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;" text="Поиск">
+                  <Label layoutX="29.0" layoutY="19.0" text="Введите параметр поиска:" textFill="WHITE">
                      <font>
-                        <Font name="Century Schoolbook Bold Italic" size="15.0" />
+                        <Font name="Century Schoolbook Bold Italic" size="25.0" />
                      </font>
-                  </Button>
+                  </Label>
                </children>
             </AnchorPane>
             <Button fx:id="MainButton" layoutX="697.0" layoutY="524.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="126.0" style="-fx-background-color: #483D8B; -fx-background-radius: 15;" text="Меню" textFill="#fcfafa">

@@ -1,6 +1,14 @@
+/**
+ * Контроллер для окна приложения "Поиск".
+ * @author SabinaTanya
+ */
+
 package com.example.shop;
 
+import MySQL.SearchMysqlConnect;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,73 +22,183 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ *  Описание объектов: кнопок, таблиц, текстовых полей,
+ * которые находятся в окне приложения.
+ */
 public class SearchController {
 
+    /** Кнопка для перехода к главному окну - "Меню" */
     @FXML
     private Button MainButton;
 
-    @FXML
-    private Button SearchButton;
-
+    /** Поле для ввода текста по которому будет осуществляться поиск */
     @FXML
     private TextField TextSearch;
 
+    /** Представление таблицы "Товар"*/
     @FXML
-    private TableView<product> Table_Product;
+    private TableView<Product> Table_Product;
 
+    /** Колонка таблицы "Цвет" */
     @FXML
-    private TableColumn<product, String> col_colour;
+    private TableColumn<Product, String> col_colour;
 
+    /** Колонка таблицы "Номер размера" */
     @FXML
-    private TableColumn<product, Integer> col_is_size;
+    private TableColumn<Product, Integer> col_is_size;
 
+    /** Колонка таблицы "Название товара" */
     @FXML
-    private TableColumn<product, String> col_name;
+    private TableColumn<Product, String> col_name;
 
+    /** Колонка таблицы "Цена" */
     @FXML
-    private TableColumn<product, Integer> col_price;
+    private TableColumn<Product, Integer> col_price;
 
+    /** Колонка таблицы "Количество" */
     @FXML
-    private TableColumn<product, Integer> col_quantity;
+    private TableColumn<Product, Integer> col_quantity;
 
+    /** Колонка таблицы "Размер" */
     @FXML
-    private TableColumn<product, String> col_size;
+    private TableColumn<Product, String> col_size;
 
+    /** Колонка таблицы "Состав" */
     @FXML
-    private TableColumn<product, String> col_structure;
+    private TableColumn<Product, String> col_structure;
 
-    ObservableList<product> ListM;
+    /** Переменная для представления таблицы "Продукт"*/
+    ObservableList<Product> ListM;
 
+    /** Переменная для представления таблицы "Продукт",
+     *  отсортированной по вводимому параметру в текстовом поле {@link SearchController#TextSearch}
+    */
+    ObservableList<Product> dataList;
+
+    /**
+     * Инициализация кнопки {@link SearchController#MainButton}
+     * А так же вывод данных в колонки {@link SearchController#col_colour}, {@link SearchController#col_name},
+     * {@link SearchController#col_is_size}, {@link SearchController#col_size}, {@link SearchController#col_quantity},
+     * {@link SearchController#col_price}, {@link SearchController#col_structure}
+     * из таблицы {@link SearchController#Table_Product}
+     * @see SearchController
+     */
     @FXML
     void initialize() {
+        /**
+         * Активация кнопки {@link CardiganController#SearchButtonButton}
+         * @see CardiganController
+         */
         MainButton.setOnAction(event -> {
             MainButton.getScene().getWindow().hide();
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("ShopClothes.fxml"));
 
+            /* Обработка исключений */
             try {
                 loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            /*
+             * Закрытие старого окна (окна меню) перед открытием нового
+             * окна (окна описания товара)
+             */
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
         });
 
-        col_name.setCellValueFactory(new PropertyValueFactory<product, String>("product_name"));
-        col_size.setCellValueFactory(new PropertyValueFactory<product, String>("size"));
-        col_is_size.setCellValueFactory(new PropertyValueFactory<product, Integer>("id_size"));
-        col_price.setCellValueFactory(new PropertyValueFactory<product, Integer>("price_RUB"));
-        col_quantity.setCellValueFactory(new PropertyValueFactory<product, Integer>("quantity"));
-        col_colour.setCellValueFactory(new PropertyValueFactory<product, String>("colour"));
-        col_structure.setCellValueFactory(new PropertyValueFactory<product, String>("structure"));
+        /**
+         * Заполнение колонок из {@link DressesController#Table_Product} данными.
+         * Для получения данных используется класс {@link Product}
+         */
+        col_name.setCellValueFactory(new PropertyValueFactory<Product, String>("product_name"));
+        col_size.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
+        col_is_size.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id_size"));
+        col_price.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price_RUB"));
+        col_quantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
+        col_colour.setCellValueFactory(new PropertyValueFactory<Product, String>("colour"));
+        col_structure.setCellValueFactory(new PropertyValueFactory<Product, String>("structure"));
 
-
-        ListM = search_mysqlconnect.getDataproduct();
+        /**
+         * Заполнение переменной {@link SearchController#ListM} данными, предоставляемыми
+         * классом, связанным с MySQL
+         * @see SearchMysqlConnect
+         * Вывод заполненной таблицы {@link SearchController#Table_Product}
+         */
+        ListM = SearchMysqlConnect.getDataproduct();
         Table_Product.setItems(ListM);
+        searchData ();
+    }
+
+    /**
+     * Инициализации поиска с помощью заполненной данными таблицы {@link SearchController#Table_Product}
+     * с колонками {@link SearchController#col_colour}, {@link SearchController#col_name},
+     * {@link SearchController#col_is_size}, {@link SearchController#col_size}, {@link SearchController#col_quantity},
+     * {@link SearchController#col_price}, {@link SearchController#col_structure}
+     * Использование {@link SearchController#dataList} для вывода таблицы с данными,
+     * которые удовлетворяют условиям поиска - веденному параметру в {@link SearchController#TextSearch}
+     */
+    @FXML
+    void searchData (){
+        /**
+         * Заполнение колонок из {@link DressesController#Table_Product} данными.
+         * Для получения данных используется класс {@link Product}
+         */
+        col_name.setCellValueFactory(new PropertyValueFactory<Product, String>("product_name"));
+        col_size.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
+        col_is_size.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id_size"));
+        col_price.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price_RUB"));
+        col_quantity.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
+        col_colour.setCellValueFactory(new PropertyValueFactory<Product, String>("colour"));
+        col_structure.setCellValueFactory(new PropertyValueFactory<Product, String>("structure"));
+
+        /**
+         * Заполнение переменной {@link SearchController#dataList} данными, предоставляемыми
+         * классом, связанным с MySQL
+         * @see SearchMysqlConnect
+         * Вывод заполненной таблицы {@link SearchController#Table_Product}
+         */
+        dataList = SearchMysqlConnect.getDataproduct();
+        Table_Product.setItems(dataList);
+
+        /** Создание переменной на основе {@link SearchController#dataList} */
+        FilteredList<Product> filteredData = new FilteredList<>(dataList, b -> true);
+        /** Использование {@link SearchController#TextSearch} для сортировки данных из таблицы*/
+        TextSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(prod -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                /* Запуск ветвления для поиска дфннх, удовлетворяющих входному параметру */
+                if (prod.getProduct_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (prod.getSize().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(prod.getId_size()).indexOf(lowerCaseFilter) !=-1) {
+                    return true;
+                }else if (String.valueOf(prod.getPrice_RUB()).indexOf(lowerCaseFilter) !=-1) {
+                    return true;
+                }else if (String.valueOf(prod.getQuantity()).indexOf(lowerCaseFilter) !=-1) {
+                    return true;
+                }else if (prod.getColour().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }else if (prod.getStructure().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        /** Заполнение таблицы данным, которые удовлетворяют условиям поиска */
+        SortedList<Product> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(Table_Product.comparatorProperty());
+        Table_Product.setItems(sortedData);
     }
 }
