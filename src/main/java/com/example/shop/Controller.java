@@ -47,6 +47,9 @@ public class Controller {
     @FXML
     private Button TrousersButton;
 
+     @FXML
+     private Button katalog;
+
     /**
      * Инициализация кнопок
      * {@link Controller#CardiganButton}, {@link Controller#DressesButton}, {@link Controller#LingerieButton},
@@ -267,6 +270,34 @@ public class Controller {
              */
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Search.fxml"));
+
+            /**
+             * Обработка исключений
+             */
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            /**
+             * Закрытие старого окна (окна меню) перед открытием нового
+             * окна (окна описания товара)
+             */
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        });
+        katalog.setOnAction(event -> {
+            katalog.getScene().getWindow().hide();
+
+            /**
+             * Загрузка окна
+             * @see Skirts.fxml
+             */
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("photo.fxml"));
 
             /**
              * Обработка исключений
