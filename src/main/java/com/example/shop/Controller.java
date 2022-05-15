@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -47,8 +48,31 @@ public class Controller {
     @FXML
     private Button TrousersButton;
 
+
      @FXML
-     private Button katalog;
+     private ImageView cardiganImage;
+
+     @FXML
+     private ImageView dressImage;
+
+     @FXML
+     private ImageView lingerieImage;
+
+     @FXML
+     private ImageView mannequinImage;
+
+     @FXML
+     private ImageView searchImage;
+
+     @FXML
+     private ImageView shirtImage;
+
+     @FXML
+     private ImageView skirtsImage;
+
+     @FXML
+     private ImageView trousersImage;
+
 
     /**
      * Инициализация кнопок
@@ -289,33 +313,8 @@ public class Controller {
             stage.setScene(new Scene(root));
             stage.showAndWait();
         });
-        katalog.setOnAction(event -> {
-            katalog.getScene().getWindow().hide();
 
-            /**
-             * Загрузка окна
-             * @see Skirts.fxml
-             */
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("photo.fxml"));
 
-            /**
-             * Обработка исключений
-             */
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            /**
-             * Закрытие старого окна (окна меню) перед открытием нового
-             * окна (окна описания товара)
-             */
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-        });
     }
-}
+
+ }

@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -65,6 +66,18 @@ public class CardiganController {
     /** Колонка таблицы "Состав" */
     @FXML
     private TableColumn<Product, String> col_structure;
+
+    /**Изображение-иконка поиска*/
+    @FXML
+    private ImageView searchImage;
+
+    /**Изображение-иконка домика (меню)*/
+    @FXML
+    private ImageView mainImage;
+
+    /**Изображение-иконка манекена*/
+    @FXML
+    private ImageView mannequinImage;
 
     /** Переменная для представления таблицы "Продукт"*/
     ObservableList<Product> ListM;
