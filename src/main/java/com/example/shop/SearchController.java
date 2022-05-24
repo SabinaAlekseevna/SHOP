@@ -178,6 +178,7 @@ public class SearchController {
 
         /** Создание переменной на основе {@link SearchController#dataList} */
         FilteredList<Product> filteredData = new FilteredList<>(dataList, b -> true);
+
         /** Использование {@link SearchController#TextSearch} для сортировки данных из таблицы*/
         TextSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(prod -> {
@@ -185,7 +186,7 @@ public class SearchController {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
-                /* Запуск ветвления для поиска дфннх, удовлетворяющих входному параметру */
+                /* Запуск ветвления для поиска данных, удовлетворяющих входному параметру */
                 if (prod.getProduct_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (prod.getSize().toLowerCase().indexOf(lowerCaseFilter) != -1) {
