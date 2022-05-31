@@ -8,43 +8,26 @@ package MySQL;
 import com.example.shop.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 /**
  * Класс подключенния к MySQL
+ * Наследование из класса {@link MySQLConnect}
  */
-public class CardiganMysqlConnect {
-    /** Переменная - соединение с базой данных в MySQL */
-    Connection con = null;
-
-    /**
-     * Подключение к базе данных MySQL
-     * @return необходимую базу даннных - shop
-     * Обработка исключений
-     */
-    public static Connection ConnectDb()
-    {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/shop", "root", "sabina");
-            return con;
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
-            return null;
-        }
-    }
-
+public class CardiganMysqlConnect  extends MySQLConnect{
+    static Logger logger = LoggerFactory.getLogger(CardiganMysqlConnect.class);
     /**
      * Использование полученной базы данных, получение необходимых данных для приложения
      * @return соответсвующую зопросу таблиу
      * Обработка исключений
      */
-    public static ObservableList<Product> getDataproduct (){
+    public static ObservableList<Product> getDataProduct(){
 
         Connection con = ConnectDb();
         ObservableList<Product> list = FXCollections.observableArrayList();
@@ -55,7 +38,9 @@ public class CardiganMysqlConnect {
             while (rs.next()){
                 list.add(new Product(rs.getString("name_product"), rs.getString("size_product"),Integer.parseInt(rs.getString("number_size")), Integer.parseInt(rs.getString("price_RUB")),rs.getString("colour") ,Integer.parseInt(rs.getString("quantity")), rs.getString("structure")));
             }
-        } catch (Exception e){}
+        } catch (Exception e){
+            logger.error("Ошибка в получении данных ", e);
+        }
 
         return list;
     }

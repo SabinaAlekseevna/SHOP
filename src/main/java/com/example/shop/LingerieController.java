@@ -165,7 +165,7 @@ public class LingerieController {
          * @see LingerieMysqlConnect
          * Вывод заполненной таблицы {@link LingerieController#Table_Product}
          */
-        ListM = LingerieMysqlConnect.getDataproduct();
+        ListM = LingerieMysqlConnect.getDataProduct();
         Table_Product.setItems(ListM);
     }
 }

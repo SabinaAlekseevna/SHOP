@@ -167,7 +167,7 @@ public class CardiganController {
          * @see CardiganMysqlConnect
          * Вывод заполненной таблицы {@link CardiganController#Table_Product}
          */
-        ListM = CardiganMysqlConnect.getDataproduct();
+        ListM = CardiganMysqlConnect.getDataProduct();
         Table_Product.setItems(ListM);
     }
 }

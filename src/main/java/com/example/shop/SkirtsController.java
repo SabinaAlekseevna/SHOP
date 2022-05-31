@@ -164,7 +164,7 @@ public class SkirtsController {
          * @see SkirtsMysqlConnect
          * Вывод заполненной таблицы {@link SkirtsController#Table_Product}
          */
-        ListM = SkirtsMysqlConnect.getDataproduct();
+        ListM = SkirtsMysqlConnect.getDataProduct();
         Table_Product.setItems(ListM);
     }
 }

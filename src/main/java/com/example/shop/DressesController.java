@@ -162,7 +162,7 @@ public class DressesController {
          * @see DressMysqlConnect
          * Вывод заполненной таблицы {@link DressesController#Table_Product}
          */
-        ListM = DressMysqlConnect.getDataproduct();
+        ListM = DressMysqlConnect.getDataProduct();
         Table_Product.setItems(ListM);
     }
 

@@ -162,7 +162,7 @@ public class ShirtController {
          * @see ShirtMysqlConnect
          * Вывод заполненной таблицы {@link ShirtController#Table_Product}
          */
-        ListM = ShirtMysqlConnect.getDataproduct();
+        ListM = ShirtMysqlConnect.getDataProduct();
         Table_Product.setItems(ListM);
     }
 }

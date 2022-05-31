@@ -163,7 +163,7 @@ public class TrousersController {
          * @see TrousersMysqlConnect
          * Вывод заполненной таблицы {@link TrousersController#Table_Product}
          */
-        ListM = TrousersMysqlConnect.getDataproduct();
+        ListM = TrousersMysqlConnect.getDataProduct();
         Table_Product.setItems(ListM);
     }
 }

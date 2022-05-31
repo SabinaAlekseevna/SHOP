@@ -4,6 +4,7 @@ module com.example.shop {
     requires java.sql;
     requires java.desktop;
     requires mysql.connector.java;
+    requires slf4j.api;
 
 
     opens com.example.shop to javafx.fxml;

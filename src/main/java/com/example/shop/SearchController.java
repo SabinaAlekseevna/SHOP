@@ -140,7 +140,7 @@ public class SearchController {
          * @see SearchMysqlConnect
          * Вывод заполненной таблицы {@link SearchController#Table_Product}
          */
-        ListM = SearchMysqlConnect.getDataproduct();
+        ListM = SearchMysqlConnect.getDataProduct();
         Table_Product.setItems(ListM);
         searchData ();
     }
@@ -173,7 +173,7 @@ public class SearchController {
          * @see SearchMysqlConnect
          * Вывод заполненной таблицы {@link SearchController#Table_Product}
          */
-        dataList = SearchMysqlConnect.getDataproduct();
+        dataList = SearchMysqlConnect.getDataProduct();
         Table_Product.setItems(dataList);
 
         /** Создание переменной на основе {@link SearchController#dataList} */
@@ -195,9 +195,9 @@ public class SearchController {
                     return true;
                 }else if (String.valueOf(prod.getPrice_RUB()).indexOf(lowerCaseFilter) !=-1) {
                     return true;
-                }else if (String.valueOf(prod.getQuantity()).indexOf(lowerCaseFilter) !=-1) {
+                }else if (String.valueOf(prod.getQuantity()).contains(lowerCaseFilter)) {
                     return true;
-                }else if (prod.getColour().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                }else if (prod.getColour().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }else if (prod.getStructure().toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;

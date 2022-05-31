@@ -1,0 +1,26 @@
+Index: .idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml
+===================================================================
+diff --git a/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml b/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_2.xml
+rename from .idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml
+rename to .idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_2.xml
+--- a/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml	
++++ b/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_2.xml	
+@@ -1,13 +1,13 @@
+ <component name="libraryTable">
+-  <library name="Maven: org.junit.platform:junit-platform-engine:1.8.1">
++  <library name="Maven: org.junit.platform:junit-platform-engine:1.7.2">
+     <CLASSES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.7.2/junit-platform-engine-1.7.2.jar!/" />
+     </CLASSES>
+     <JAVADOC>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1-javadoc.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.7.2/junit-platform-engine-1.7.2-javadoc.jar!/" />
+     </JAVADOC>
+     <SOURCES>
+-      <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1-sources.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.7.2/junit-platform-engine-1.7.2-sources.jar!/" />
+     </SOURCES>
+   </library>
+ </component>
+\ No newline at end of file
